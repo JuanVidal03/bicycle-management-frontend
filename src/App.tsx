@@ -40,7 +40,6 @@ const App: React.FC = () => {
         </Suspense>
       </BrowserRouter>
     </QueryClientProvider>
-
   );
 };
 

@@ -3,7 +3,7 @@ import Sidebar from './components/Sidebar.tsx';
 
 const Index = ({ children }: ChildrenProps): JSX.Element => {
   return (
-    <div className='flex grow'>
+    <div className='flex grow font-default'>
       <Sidebar/>
       <main className='overflow-y-auto w-full h-screen p-8 bg-gray-background'>
         { children }
