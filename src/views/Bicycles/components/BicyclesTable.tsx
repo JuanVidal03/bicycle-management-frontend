@@ -1,11 +1,8 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
-import { useEffect, useState } from 'react';
 import { AgGridReact } from 'ag-grid-react';
 import { AllCommunityModule, ModuleRegistry, ColDef, ICellRendererParams } from 'ag-grid-community';
 import { useFindAllBicycles } from '../../../hooks/useBicycles.ts';
 import Loader from '../../Shared/Loader/Index.tsx';
 import { BicycleSchema } from '../interface/Bicycle.interface.ts';
-import { toast } from 'react-hot-toast';
 import Actions from './Actions.tsx';
 import BicycleSatatus from './BicycleSatatus.tsx';
 
@@ -19,7 +16,7 @@ const BicyclesTable = (): JSX.Element => {
     alignItems: 'center',
   };
 
-  const [colDefs, setColDefs] = useState<ColDef<BicycleSchema>[]>([
+  const colDefs: ColDef<BicycleSchema>[] = [
     { headerName: 'ID', field: 'id', flex: 1, filter: true, cellStyle: cellStyles },
     { headerName: 'Marca', field: 'marca', flex: 2, filter: true, cellStyle: cellStyles },
     { headerName: 'Color', field: 'color', flex: 2, filter: true, cellStyle: cellStyles },
@@ -27,14 +24,16 @@ const BicyclesTable = (): JSX.Element => {
     { headerName: 'Precio Alquiler', field: 'precio', flex: 2, filter: true, cellStyle: cellStyles, cellRenderer: (params: ICellRendererParams) => <p>${ params?.data?.precio.toLocaleString() } COP</p> },
     { headerName: 'Actions', field: 'precio', flex: 1
       , filter: true, cellStyle: cellStyles, cellRenderer: (params: ICellRendererParams) => <Actions id={params?.data?.id}/> }
-  ]);
+  ];
 
-  useEffect(() => {
-    if (isError) {
-      toast.error(error?.message);
-    }
-    return;
-  }, [isError, error]);
+  if (isError) {
+    return (
+      <div className='flex flex-col gap-2'>
+        <p className='font-semibold'>Error al traer las bicicletas:</p>
+        <p>{error.message}</p>
+      </div>
+    );
+  }
 
   const paginationSelector = [10, 20, 30, 50];
 

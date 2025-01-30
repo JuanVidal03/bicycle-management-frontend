@@ -1,7 +1,8 @@
 import axiosInstance from '../config/axiosInstance.ts';
-import axios, { AxiosResponse } from 'axios';
+import { AxiosResponse, isAxiosError } from 'axios';
+import { BicycleSchema } from '../views/Bicycles/interface/Bicycle.interface.ts';
 
-export const findAll = async(): Promise<AxiosResponse> => {
+export const findAll = async(): Promise<AxiosResponse<BicycleSchema[]>> => {
   try {
     const response = await axiosInstance.get('/bicycles');
     
@@ -11,8 +12,8 @@ export const findAll = async(): Promise<AxiosResponse> => {
 
     return response.data;
   } catch (error: unknown) {
-    if (axios.isAxiosError(error)) {
-      throw new Error(error.response?.data?.message || error.message);
+    if (isAxiosError(error)) {
+      throw new Error(error.response?.data?.message);
     } else {
       throw new Error(`API ERROR: ${error}`);
     }
