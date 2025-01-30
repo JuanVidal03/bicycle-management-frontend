@@ -1,3 +1,7 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+
+@theme {
+  --color-dark-black: #14121E;
+  --color-gray-background: #FCF3FD;
+  --font-default: 'Kumbh Sans', serif;
+}
