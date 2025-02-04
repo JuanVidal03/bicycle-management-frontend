@@ -9,7 +9,7 @@ import BicycleSatatus from './BicycleSatatus.tsx';
 ModuleRegistry.registerModules([AllCommunityModule]);
 
 const BicyclesTable = (): JSX.Element => {
-  const { data: bicycles, isLoading, isFetching, isError, error } = useFindAllBicycles();
+  const { data: bicycles, isLoading, isError, error } = useFindAllBicycles();
 
   const cellStyles = {
     display: 'flex',
@@ -21,7 +21,7 @@ const BicyclesTable = (): JSX.Element => {
     { headerName: 'Marca', field: 'marca', flex: 2, filter: true, cellStyle: cellStyles },
     { headerName: 'Color', field: 'color', flex: 2, filter: true, cellStyle: cellStyles },
     { headerName: 'Estado', field: 'estado', flex: 2, filter: true, cellStyle: cellStyles, cellRenderer: (params: ICellRendererParams) => <BicycleSatatus status={params?.data.estado}/> },
-    { headerName: 'Precio Alquiler', field: 'precio', flex: 2, filter: true, cellStyle: cellStyles, cellRenderer: (params: ICellRendererParams) => <p>${ params?.data?.precio.toLocaleString() } COP</p> },
+    { headerName: 'Precio Alquiler', field: 'precio', flex: 2, filter: true, cellStyle: cellStyles, cellRenderer: (params: ICellRendererParams) => <p>${ params?.data?.precio?.toLocaleString() } COP</p> },
     { headerName: 'Actions', field: 'precio', flex: 1
       , filter: true, cellStyle: cellStyles, cellRenderer: (params: ICellRendererParams) => <Actions id={params?.data?.id}/> }
   ];
@@ -40,7 +40,7 @@ const BicyclesTable = (): JSX.Element => {
   return (
     <div className='max-h-[85vh]'>
       {
-        (isLoading || isFetching) ?
+        (isLoading) ?
           <div className='w-full flex items-center justify-center'>
             <Loader/>
           </div>

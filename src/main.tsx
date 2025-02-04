@@ -2,17 +2,15 @@ import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import './index.css';
 import App from './App.tsx';
-import { Toaster } from 'react-hot-toast';
+import { ToastContainer } from 'react-toastify';
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <App />
-    <Toaster
+    <ToastContainer
       position='top-right'
-      toastOptions={{
-        duration: 5000,
-        removeDelay:1000,
-      }}
+      autoClose={3000}
+      closeOnClick={true}
     />
   </StrictMode>,
 );
