@@ -3,5 +3,7 @@
 @theme {
   --color-dark-black: #14121E;
   --color-gray-background: #FCF3FD;
+  --color-dark-gradient: #0000008a;
   --font-default: 'Kumbh Sans', serif;
+  --font-title: 'Noto Serif', serif;
 }
